@@ -53,13 +53,13 @@ def search(query, num_results, search_engine="google"):
 
     return links, titles
 
-def main(query, search_engines):
+def main(query):
     num_results = 100
 
     url_results = []
     titles = []
 
-    for engine in search_engines:
+    for engine in ['google', 'bing', 'brave']:
         engine_urls, engine_titles = search(query, num_results, engine)
         url_results.extend(engine_urls)
         titles.extend(engine_titles)
