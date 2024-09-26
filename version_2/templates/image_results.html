@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta name="description" content="Fyve Search | Image Results" />
+        <meta name="author" content="Gladon Chua" />
+        <meta charset="UTF-8" />
+        <script src="https://kit.fontawesome.com/081b6288d8.js" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+        <title>{{ img_query }} | Fyve Images</title>
+        <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>👋</text></svg>"/>
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    </head>
+    <body>
+        <div class="sidebar">
+            <a href="http://search_engine:8080"><div id="logo">👋</div></a>
+            <ul class="nav_list">
+                <li>
+                    <div class="open-search">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </div>
+                    <span class="tooltip">Search</span>
+                </li>
+                <li>
+                    <div class="open-img-search">
+                        <i class="fa-solid fa-camera"></i>
+                    </div>
+                    <span class="tooltip">Images</span>
+                </li>
+                <li>
+                    <div class="open-vid-search">
+                        <i class="fa-solid fa-video"></i>
+                    </div>
+                    <span class="tooltip">Videos</span>
+                </li>
+                <li>
+                    <form action="/settings" method="">
+                        <a href="#" onclick="this.parentNode.submit()">
+                            <i class="fa-solid fa-gear"></i>
+                        </a>
+                    </form>
+                    <span class="tooltip">Settings</span>
+                </li>
+                <li>
+                    <form action="/docs" method="">
+                        <a href="#" onclick="this.parentNode.submit()">
+                            <i class="fa-solid fa-book"></i>
+                        </a>
+                    </form>
+                    <span class="tooltip">Documentation</span>
+                </li>
+            </ul>
+        </div>
+        <div class="box">
+            <div class="close-search">
+                <i class="fa-solid fa-xmark"></i>
+            </div>
+            
+            <form action="/search" method="POST" class="form-area">
+                <input name="search_query" type="text" placeholder="Search anything..." required="required">
+                <button><i class="fas fa-search"></i></button>
+            </form>
+        </div>
+        <div class="img-box">
+            <div class="close-img-search">
+                <i class="fa-solid fa-xmark"></i>
+            </div>
+            
+            <form action="/images" method="POST" class="form-area">
+                <input name="img_query" type="text" placeholder="Search images..." required="required">
+                <button><i class="fas fa-search"></i></button>
+            </form>
+        </div>
+        <div class="vid-box">
+            <div class="close-vid-search">
+                <i class="fa-solid fa-xmark"></i>
+            </div>
+            
+            <form action="/videos" method="POST" class="form-area">
+                <input name="vid_query" type="text" placeholder="Search videos..." required="required">
+                <button><i class="fas fa-search"></i></button>
+            </form>
+        </div>
+        <div class="home_content">
+            <h2 class="term_title">Search results for "{{ img_query }}"</h2>
+            <div class="img_results">
+                {% for i in range(img_url | length) %}
+                    <a href="{{ img_url[i] }}" target="_blank"><img src="{{ img_url[i] }}" alt="{{ img_alt[i] }}" title="{{ img_alt[i] }}" height="200px"></a>
+                {% endfor %}
+            </div>
+        </div>
+
+        <script>
+            $('.open-search, .close-search').on('click', function(){
+                $('.box').toggleClass('open')
+            });
+
+            $('.open-img-search, .close-img-search').on('click', function(){
+                $('.img-box').toggleClass('open')
+            });
+
+            $('.open-vid-search, .close-vid-search').on('click', function(){
+                $('.vid-box').toggleClass('open')
+            });
+
+            $(document).keypress(function(forwardSlash){
+                var key = forwardSlash.which;
+                if(key == 47) {
+                    $('.box').toggleClass('open');
+                }
+            });
+        </script>
+    </body>
+</html>
