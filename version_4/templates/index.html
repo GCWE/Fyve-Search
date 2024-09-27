@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+
+<html style="{{ theme }}">
+    <head>
+        <!-- Description, author, and charset -->
+        <meta name="description" content="Fyve Search | Homepage" />
+        <meta name="author" content="Gladon Chua" />
+        <meta charset="UTF-8" />
+        <!-- Allows access to free icons -->
+        <script src="https://kit.fontawesome.com/081b6288d8.js" crossorigin="anonymous"></script>
+        <!-- Title of page -->
+        <title>Fyve Search</title>
+        <!-- Favicon -->
+        <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>👋</text></svg>"/>
+        <!-- Link to stylesheet -->
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    </head>
+    <body>
+        <!-- The searchbar through which the user can enter a search query -->
+        <div class="searchbar-container">
+            <!-- The settings button in the top-right corner -->
+            <div class="settings-btn">
+                <form action="/settings" method="">
+                    <a href="#" onclick="this.parentNode.submit()">
+                        <i class="fa-solid fa-gear"></i>
+                    </a>
+                </form>
+            </div>
+            <!-- The search title -->
+            <h1 class="search-title">{{ title }} Fyve Search</h1>
+            <!-- The search bar and button -->
+            <form action="/" method="POST" class="searchbar">
+                <input class="search-query" name="search_query" type="text" placeholder="Search anything..." required="required">
+                <button class="search-btn" type="submit"><i class="fas fa-search"></i></button>
+            </form>
+        </div>
+    </body>
+</html>
