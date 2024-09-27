@@ -1,0 +1,526 @@
+/* Defines default state of every HTML page created */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+    scroll-behavior: smooth;
+}
+
+/* HTML page config */
+body {
+    position: relative;
+    min-height: 100vh;
+    width: 100%;
+    overflow: scroll;
+    z-index: -1;
+    background-color: white;
+}
+
+/* Homepage */
+
+/* Settings button in top-right corner */
+.settings-btn {
+    position: absolute;
+    top: 5%;
+    right: 2.5%;
+}
+
+.settings-btn a {
+    color: black;
+}
+
+.settings-btn a i {
+    font-size: 200%;
+}
+
+/* The central title on the Index page */
+.search-title {
+    font-size: 50px;
+    padding-bottom: 3%;
+}
+
+/* Design of the searchbar */
+.searchbar-container {
+    width: 100%;
+    min-height: 100vh;
+    padding: 5%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.searchbar {
+    width: 100%;
+    max-width: 700px;
+    background: rgba(221, 219, 219, 0.2);
+    display: flex;
+    align-items: center;
+    border-radius: 60px;
+    padding: 10px 20px;
+    backdrop-filter: blur(4px) saturate(180%);
+}
+
+.search-query {
+    background: transparent;
+    flex: 1;
+    border: 0;
+    outline: none;
+    padding: 24px 20px;
+    font-size: 20px;
+    color: #848486;
+}
+
+::placeholder {
+    color: #848486;
+}
+
+/* Configuration of the "search" button */
+.search-btn i {
+    color: white;
+    width: 25px;
+}
+
+.search-btn {
+    border: 0;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    background-color: #58629b;
+    cursor: pointer;
+}
+
+/* Search Results */
+
+/* Configures the left-side navigation bar */
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 78px;
+    background-color: #11101d;
+    padding: 6px 14px;
+}
+
+.sidebar a {
+    text-decoration: none;
+}
+
+/* Navigation bar logo */
+.sidebar #logo {
+    height: 47px;
+    min-width: 50px;
+    font-size: 22px;
+    padding-right: 5px;
+    line-height: 75px;
+    text-align: center;
+}
+
+/* Other buttons (e.g. Search, Image Search, Video Search, Settings, Documentation) */
+.sidebar ul {
+    margin-top: 25px;
+}
+
+.sidebar ul li {
+    position: relative;
+    height: 50px;
+    width: 100%;
+    margin-bottom: 15px;
+    list-style: none;
+    line-height: 50px;
+}
+
+.sidebar ul li .tooltip {
+    position: absolute;
+    left: 122px;
+    top: 0;
+    transform: translate(-50%, -50%);
+    border-radius: 6px;
+    height: 35px;
+    width: 122px;
+    background: #fff;
+    line-height: 35px;
+    text-align: center;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+    transition: 0s;
+    opacity: 0;
+    pointer-events: none;
+    display: block;
+}
+
+.sidebar ul li:hover .tooltip {
+    transition: all 0.5s ease;
+    opacity: 1;
+    top: 50%;
+}
+
+/* The buttons for opening the Search/Image/Video search windows */
+.sidebar ul li a,
+.open-search,
+.open-img-search,
+.open-vid-search {
+    color: #fff;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    transition: all 0.4s ease;
+    border-radius: 12px;
+    white-space: nowrap;
+}
+
+.sidebar ul li a:hover,
+.open-search:hover,
+.open-img-search:hover,
+.open-img-search:hover,
+.open-vid-search:hover {
+    color: #11101d;
+    background: #fff;
+    cursor: pointer;
+}
+
+.close-search,
+.close-img-search,
+.close-vid-search {
+    position: fixed;
+    font-size: 25px;
+    color: #fff;
+    background-color: #080404;
+    top: 72px;
+    left: 15px;
+    padding: 15px;
+    border-radius: 12px;
+    transition: all 0.5s ease;
+    cursor: pointer;
+}
+
+.close-img-search {
+    top: 137px;
+    left: 15px;
+}
+
+.close-vid-search {
+    top: 202px;
+    left: 15px;
+}
+
+.sidebar ul li i {
+    height: 50px;
+    min-width: 50px;
+    font-size: 22px;
+    border-radius: 12px;
+    line-height: 50px;
+    text-align: center;
+}
+
+/* The main content of the Search Results page */
+
+.home_content {
+    position: absolute;
+    height: 100%;
+    top: 20px;
+    left: 120px;
+    z-index: -1;
+}
+
+.home_content .term_title {
+    padding: 1%;
+}
+
+/* The appearance of the AI response box */
+
+.home_content .ai_results {
+    width: 90%;
+    box-sizing: border-box;
+    background-color: #f6f6f8;
+    border-radius: 25px;
+    padding: 3%;
+    font-size: 15px;
+}
+
+.home_content .ai_results h4 {
+    font-size: 18px;
+}
+
+/* Configrues the text style in the search results box */
+
+.home_content .text {
+    font-size: 20px;
+    font-weight: 500;
+    color: #1d1b31;
+    margin: 12px;
+}
+
+.home_content .text .url {
+    font-size: 15px;
+    text-decoration: none;
+    color: #1d1b31;
+}
+
+.home_content .text p {
+    font-size: 12px;
+    padding-top: 10px;
+    font-style: italic;
+}
+
+/* Toggles the fullscreen Search window, when the Search/Image/Video button is clicked */
+.box,
+.img-box,
+.vid-box {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: 0.5s;
+}
+
+/* Configuring the fullscreen search window */
+.box.open,
+.img-box.open,
+.vid-box.open {
+    opacity: 1;
+    visibility: visible;
+}
+
+.form-area {
+    width: 100%;
+    max-width: 600px;
+    display: flex;
+    width: 100%;
+    border-bottom: 1px solid #fff;
+}
+
+.form-area input {
+    flex: 1 1 auto;
+    background-color: transparent;
+    border: 0;
+    height: 40px;
+    font-size: 30px;
+    width: 100%;
+    color: #fff;
+}
+
+.form-area button {
+    background: #58629b;
+    padding: 0 18px;
+    border: none;
+    font-size: 22px;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    color: #fff;
+    cursor: pointer;
+}
+
+.form-area input::placeholder {
+    color: rgba(255, 255, 255, 0.7);
+    letter-spacing: 3px;
+}
+
+/* Settings */
+
+/* The background of the Settings page */
+.settings-body {
+    background-color: #ebebfb;
+    color: #171730;
+    user-select: none;
+    height: 150vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* The "card"/container at the center of the Settings page (where the toggles will be located) */
+.settings-container {
+    box-sizing: border-box;
+    background-color: white;
+    padding: 10px 50px;
+    border-radius: 20px;
+    box-shadow: 0 0 20px rgb(200, 200, 200);
+    width: 450px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    z-index: -1;
+}
+
+.settings-container h1,
+.settings-container h3 {
+    font-weight: 600;
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+
+.settings-container span {
+    font-weight: 500;
+}
+
+.settings-container label {
+    cursor: pointer;
+}
+
+.toggle-container {
+    position: relative;
+    width: fit-content;
+    height: fit-content;
+    bottom: 7px;
+}
+
+/* Configuration of toggle appearance (turning a checkbox into a toggle) */
+.toggle {
+    width: 60px;
+    height: 35px;
+    border-radius: 40px;
+    background-color: #ebebfb;
+    display: inline-block;
+}
+
+.toggle-c {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background-color: white;
+    display: inline-block;
+    position: absolute;
+    left: 5px;
+    top: 5px;
+    transition: 300ms all;
+    border: 1px solid #8c8ca4;
+}
+
+input[type='checkbox'] {
+    display: none;
+}
+
+input[type='checkbox']:checked+div .toggle-c {
+    left: 30px;
+    background-color: #30305c;
+    border-color: #30305c;
+}
+
+.togg-label {
+    display: flex;
+    align-self: center;
+    justify-content: space-between;
+}
+
+/* Configuration of "Update Settings" button */
+.settings-bottom {
+    margin-top: 20px;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.settings-bottom input {
+    font-size: 15px;
+    color: white;
+    padding: 0.6em 1em;
+    margin: 0.25em;
+    border-radius: 1em;
+    border: none;
+    outline: none;
+    background: #30305c;
+    cursor: pointer;
+}
+
+/* Documentation */
+
+/* Configures the background of the Docs page */
+#docs {
+    background-color: #EAEAEA;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.doc-main-sec {
+    margin-top: 40px;
+}
+
+/* Configures the Docs navigation bar on the left-hand side */
+#docs-nav {
+    background-color: #fff;
+    width: 100%;
+    border-bottom: 1px solid;
+}
+
+#docs-nav .nav-logo {
+    padding: 10px;
+    margin-top: 10px;
+    text-align: center;
+}
+
+#docs-nav .nav-logo a {
+    font-size: 30px;
+    text-decoration: none;
+}
+
+#docs-nav li {
+    color: #4D4E53;
+    border-top: 1px solid black;
+    list-style: none;
+}
+
+#docs-nav li a {
+    display: block;
+    padding: 10px 30px;
+    color: #4D4E53;
+    text-decoration: none;
+    cursor: pointer;
+    font-size: 18px;
+    transition: text-indent 0.3s ease-in-out;
+}
+
+#docs-nav li a:hover {
+    font-weight: 500;
+    text-indent: 5px;
+}
+
+/* Configures the main content of the Docs page */
+#docs p {
+    margin: 10px;
+}
+
+#docs ol {
+    margin-left: 30px;
+}
+
+#main-doc {
+    margin: 0 auto;
+}
+
+#docs header {
+    color: black;
+    margin: 10px;
+    text-align: center;
+    font-size: 1.6em;
+    font-weight: 500;
+}
+
+/* Enables for responsivity of Docs page */
+@media only screen and (min-width: 815px) {
+    #docs {
+        flex-direction: row;
+    }
+
+    #docs-nav {
+        width: 300px;
+        position: fixed;
+        height: 100%;
+        resize: horizontal;
+        overflow-x: scroll;
+    }
+
+    #main-doc {
+        margin: 0 20px;
+        margin-left: 350px;
+    }
+}
