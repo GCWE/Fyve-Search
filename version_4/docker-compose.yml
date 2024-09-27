@@ -1,0 +1,23 @@
+# Description: This file is used to define the services that will be run in the docker container
+---
+version: '3'
+services:
+  chromium:
+    image: lscr.io/linuxserver/chromium:latest
+    container_name: disposable_chromium
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Etc/UTC
+      - CHROME_CLI=http://fyve_search:8080
+    ports:
+      - 3000:3000
+    shm_size: "1gb"
+    restart: unless-stopped
+    links:
+      - fyve_search
+  
+  fyve_search:
+    build: .
+    ports:
+      - 8080:8080
