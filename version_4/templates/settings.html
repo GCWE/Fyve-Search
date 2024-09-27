@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+
+<html style="{{ theme }}">
+    <head>
+        <!-- Description, author and charset type -->
+        <meta name="description" content="Fyve Search | Settings" />
+        <meta name="author" content="Gladon Chua" />
+        <meta charset="UTF-8" />
+        <!-- Acces to free icons -->
+        <script src="https://kit.fontawesome.com/081b6288d8.js" crossorigin="anonymous"></script>
+        <!-- JavaScript library for navigation bar -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+        <!-- Title -->
+        <title>Settings | Fyve Search</title>
+        <!-- Favicon -->
+        <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>👋</text></svg>"/>
+        <!-- Link to stylesheet -->
+        <link rel="stylesheet" href="/static/css/style.css">
+    </head>
+    <!-- The navigation bar on the left-side of the page - where the logo and search buttons are -->
+    <body class="settings-body">
+        <div class="sidebar">
+            <a href="http://search_engine:8080"><div id="logo">👋</div></a>
+            <ul class="nav_list">
+                <li>
+                    <div class="open-search">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </div>
+                    <span class="tooltip">Search</span>
+                </li>
+                <li>
+                    <div class="open-img-search">
+                        <i class="fa-solid fa-camera"></i>
+                    </div>
+                    <span class="tooltip">Images</span>
+                </li>
+                <li>
+                    <div class="open-vid-search">
+                        <i class="fa-solid fa-video"></i>
+                    </div>
+                    <span class="tooltip">Videos</span>
+                </li>
+                <li>
+                    <form action="/settings" method="">
+                        <a href="#" onclick="this.parentNode.submit()">
+                            <i class="fa-solid fa-gear"></i>
+                        </a>
+                    </form>
+                    <span class="tooltip">Settings</span>
+                </li>
+                <li>
+                    <form action="/docs" method="">
+                        <a href="#" onclick="this.parentNode.submit()">
+                            <i class="fa-solid fa-book"></i>
+                        </a>
+                    </form>
+                    <span class="tooltip">Documentation</span>
+                </li>
+            </ul>
+        </div>
+        <!-- The search box that appears when the search button is clicked -->
+        <div class="box">
+            <div class="close-search">
+                <i class="fa-solid fa-xmark"></i>
+            </div>
+            
+            <form action="/search" method="POST" class="form-area">
+                <input name="search_query" type="text" placeholder="Search anything..." required="required">
+                <button><i class="fas fa-search"></i></button>
+            </form>
+        </div>
+        <div class="img-box">
+            <div class="close-img-search">
+                <i class="fa-solid fa-xmark"></i>
+            </div>
+            
+            <form action="/images" method="POST" class="form-area">
+                <input name="img_query" type="text" placeholder="Search images..." required="required">
+                <button><i class="fas fa-search"></i></button>
+            </form>
+        </div>
+        <div class="vid-box">
+            <div class="close-vid-search">
+                <i class="fa-solid fa-xmark"></i>
+            </div>
+            
+            <form action="/videos" method="POST" class="form-area">
+                <input name="vid_query" type="text" placeholder="Search videos..." required="required">
+                <button><i class="fas fa-search"></i></button>
+            </form>
+        </div>
+        
+        <!-- The main settings box -->
+        <div class="settings-container">
+            {% for message in get_flashed_messages() %}
+                {{ message }}
+            {% endfor %}
+            <!-- Title -->
+            <div>
+                <h1>Settings</h1>
+            </div>
+            <!-- Settings container -->
+            <form action="/settings" method="POST">
+                <div>
+                    <div>
+                        <!-- Enable dark mode -->
+                        <label for="togg-1" class="togg-label">
+                            <span>Dark Mode</span>
+                            <input type="checkbox" name="toggle_state" id="togg-1" value="dark_mode" {{ dark_mode_state }}>
+                            <div class="toggle-container">
+                                <span class="toggle"></span>
+                                <span class="toggle-c"></span>
+                            </div>
+                        </label>
+                    </div>
+                    <div>
+                        <!-- Enable AI search responses -->
+                        <label for="togg-2" class="togg-label">
+                            <span>Enable AI Search Responses</span>
+                            <input type="checkbox" name="toggle_state" id="togg-2" value="ai_search" {{ ai_search_state }}>
+                            <div class="toggle-container">
+                                <span class="toggle"></span>
+                                <span class="toggle-c"></span>
+                            </div>
+                        </label>
+                        <div class="ai-key">
+                            <input name="ai-key" type="password"  placeholder="Enter Groq API Key..." value="{{ groq_key }}">
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <!-- Allows configuration of search engine choices -->
+                    <div>
+                        <h3>Search Engines</h3>
+                    </div>
+                
+                    <div>
+                        <!-- Google -->
+                        <label for="togg-3" class="togg-label">
+                            <span>Google</span>
+                            <input type="checkbox" name="toggle_state" id="togg-3" value="google" {{ google_state }}>
+                            <div class="toggle-container">
+                                <span class="toggle"></span>
+                                <span class="toggle-c"></span>
+                            </div>
+                        </label>
+                    </div>
+                    <div>
+                        <!-- Bing -->
+                        <label for="togg-4" class="togg-label">
+                            <span>Bing</span>
+                            <input type="checkbox" name="toggle_state" id="togg-4" value="bing" {{ bing_state }}>
+                            <div class="toggle-container">
+                                <span class="toggle"></span>
+                                <span class="toggle-c"></span>
+                            </div>
+                        </label>
+                    </div>
+                    <div>
+                        <!-- Brave -->
+                        <label for="togg-5" class="togg-label">
+                            <span>Brave</span>
+                            <input type="checkbox" name="toggle_state" id="togg-5" value="brave" {{ brave_state }}>
+                            <div class="toggle-container">
+                                <span class="toggle"></span>
+                                <span class="toggle-c"></span>
+                            </div>
+                        </label>
+                    </div>
+                    <div>
+                        <!-- Yahoo -->
+                        <label for="togg-6" class="togg-label">
+                            <span>Yahoo</span>
+                            <input type="checkbox" name="toggle_state" id="togg-6" value="yahoo" {{ yahoo_state }}>
+                            <div class="toggle-container">
+                                <span class="toggle"></span>
+                                <span class="toggle-c"></span>
+                            </div>
+                        </label>
+                    </div>
+                    <div>
+                        <!-- DuckDuckGo -->
+                        <label for="togg-7" class="togg-label">
+                            <span>DuckDuckGo</span>
+                            <input type="checkbox" name="toggle_state" id="togg-7" value="duckduckgo" {{ duckduckgo_state }}>
+                            <div class="toggle-container">
+                                <span class="toggle"></span>
+                                <span class="toggle-c"></span>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+
+                <div>
+                    <!-- Allows choice of image engines -->
+                    <div>
+                        <h3>Image Search Engines</h3>
+                    </div>
+                
+                    <div>
+                        <!-- Unsplash -->
+                        <label for="togg-8" class="togg-label">
+                            <span>Unsplash</span>
+                            <input type="checkbox" name="toggle_state" id="togg-8" value="unsplash_search" {{ unsplash_search_state }}>
+                            <div class="toggle-container">
+                                <span class="toggle"></span>
+                                <span class="toggle-c"></span>
+                            </div>
+                        </label>
+                    </div>
+                    <div>
+                        <!-- Pexels -->
+                        <label for="togg-9" class="togg-label">
+                            <span>Pexels</span>
+                            <input type="checkbox" name="toggle_state" id="togg-9" value="pexels_search" {{ pexels_search_state }}>
+                            <div class="toggle-container">
+                                <span class="toggle"></span>
+                                <span class="toggle-c"></span>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+
+                <div>
+                    <!-- Allows choice of video engines -->
+                    <div>
+                        <h3>Video Search Engines</h3>
+                    </div>
+                
+                    <div>
+                        <!-- Google Videos -->
+                        <label for="togg-10" class="togg-label">
+                            <span>Google Videos</span>
+                            <input type="checkbox" name="toggle_state" id="togg-10" value="google_videos" {{ google_videos_state }}>
+                            <div class="toggle-container">
+                                <span class="toggle"></span>
+                                <span class="toggle-c"></span>
+                            </div>
+                        </label>
+                    </div>
+                    <div>
+                        <!-- Bing Videos -->
+                        <label for="togg-11" class="togg-label">
+                            <span>Bing Videos</span>
+                            <input type="checkbox" name="toggle_state" id="togg-11" value="bing_videos" {{ bing_videos_state }}>
+                            <div class="toggle-container">
+                                <span class="toggle"></span>
+                                <span class="toggle-c"></span>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+                
+                <!-- Update Settings button -->
+                <div class="settings-bottom">
+                    <input onclick="alertUpdate()" name="update_settings" type="submit" value="Update Settings">
+                </div>
+            </form>
+        </div>
+
+        <script>
+            // The following functions open and close the search boxes
+            $('.open-search, .close-search').on('click', function(){
+                $('.box').toggleClass('open')
+            });
+
+            $('.open-img-search, .close-img-search').on('click', function(){
+                $('.img-box').toggleClass('open')
+            });
+
+            $('.open-vid-search, .close-vid-search').on('click', function(){
+                $('.vid-box').toggleClass('open')
+            });
+
+            // The following function toggles the settings box
+            $(document).keypress(function(forwardSlash){
+                var key = forwardSlash.which;
+                if(key == 47) {
+                    $('.box').toggleClass('open');
+                }
+            });
+
+            // The following function alerts the user that the settings have been updated
+            function alertUpdate() {
+                alert('Settings successfully updated.');
+            }
+        </script>
+    </body>
+</html>
